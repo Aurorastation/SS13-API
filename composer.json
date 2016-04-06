@@ -1,0 +1,25 @@
+{
+    "name": "aurorsatation/borealisbot2",
+    "description": "A PHP based discord bot to interface between Discord and SS13.",
+    "type": "project",
+    "require": {
+        "team-reflex/discord-php": "master",
+        "guzzlehttp/guzzle": "~6.0",
+        "slim/slim": "2.3.*",
+        "entomb/slim-json-api": "dev-master",
+        "vlucas/phpdotenv": "^2.2",
+        "monolog/monolog": "^1.18"
+    },
+    "license": "AGPL 3.0",
+    "minimum-stability": "dev",
+	"autoload": {
+		"psr-4": {
+			"Borealis\\": "src/"
+		}
+	},
+    "scripts": {
+        "post-root-package-install": [
+            "php -r \"copy('.env.example', '.env');\""
+        ]
+    }
+}
