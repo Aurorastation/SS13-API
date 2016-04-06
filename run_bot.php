@@ -1,5 +1,7 @@
 <?php
 
+ini_set('max_execution_time', 0);
+
 use Borealis\Bot\Bot;
 use Borealis\Bot\Config;
 use Discord\Discord;
