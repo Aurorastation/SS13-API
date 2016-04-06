@@ -101,7 +101,7 @@ class Bot
 			$words = explode(' ', $message->content);
 
 			// Safety checks for the time being.
-			if (sizeof($words) && array_key_exists($words, 0))
+			if (isset($words) && sizeof($words))
 			{
 				foreach ($this->commands as $command => $data)
 				{
