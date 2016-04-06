@@ -38,6 +38,8 @@ try {
 	$bot->addCommand('restartserver', \Borealis\Bot\Commands\Restartserver::class);
 	$bot->addCommand('staffwho', \Borealis\Bot\Commands\Staffwho::class);
 	$bot->addCommand('who', \Borealis\Bot\Commands\Who::class);
+	$bot->addCommand('cats', \Borealis\Bot\Commands\Cats::class);
+	$bot->addCommand('penguins', \Borealis\Bot\Commands\Penguins::class);
 } catch (\Exception $e) {
 	print("Error while initing commands:");
 	print($e->getMessage());
