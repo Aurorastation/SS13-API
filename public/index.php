@@ -214,6 +214,19 @@ $app->get('/query/server/:question', 'verifyRequest', function ($question) use (
 
 		$response['reply_status'] = $ss13->reply_status;
 
+		// Fetch the actual content from the DB
+		// The rest (sentby and title) are returned via socket
+		if ($question == "faxget" && $response['reply_status'] == "success")
+		{
+			$dbh = setupDbh();
+
+			$stmt = $dbh->prepare("SELECT content FROM ss13_bot_cache WHERE id = :id");
+			$stmt->execute([":id" => $ss13->response['data']['message_id']]);
+			$data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+			$response['data']['content'] = $data['content'];
+		}
+
 		$app->render(200, $response);
 
 	} catch (Exception $e) {
