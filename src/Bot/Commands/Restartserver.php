@@ -21,7 +21,7 @@ class Restartserver
 		$result = $client->request('GET', 'query/server/restartserver', [
 			'query' => [
 				'auth_key' => md5($bot->config->getValue('AUTH_KEY')),
-				'admin' => $message->author->getUsernameAttribute()
+				'admin' => $message->author->name
 			]
 		]);
 
