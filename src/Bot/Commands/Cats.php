@@ -17,8 +17,8 @@ class Cats
 	 */
 	public static function runCommand($message, $params, $discord, $bot)
 	{
-		$client = new Client('http://random.cat');
-		$result = $client->request('GET', 'meow');
+		$client = new Client();
+		$result = $client->request('GET', 'http://random.cat/meow');
 
 		$response_arr = json_decode($result->getBody(), TRUE);
 
