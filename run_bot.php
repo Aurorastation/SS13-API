@@ -1,6 +1,7 @@
 <?php
 
 ini_set('max_execution_time', 0);
+ini_set('memory_limit', '200M');
 
 use Borealis\Bot\Bot;
 use Borealis\Bot\Config;
