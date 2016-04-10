@@ -20,6 +20,7 @@ class Playerinfo
 		if (sizeof($params) < 2)
 		{
 			$message->reply("Not enough parametres passed! The proper syntax is: `" . $bot->config->getValue('BOT_PREFIX') . "playerinfo " . Playerinfo::getParams() . "`");
+			return;
 		}
 
 		switch (strtolower($params[1])) {

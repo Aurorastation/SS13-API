@@ -20,6 +20,7 @@ class Faxlist
 		if (sizeof($params) < 1 || !(strtolower($params[0]) == "sent" || strtolower($params[0]) == "received"))
 		{
 			$message->reply("Not enough parametres passed! The proper syntax is: `" . $bot->config->getValue('BOT_PREFIX') . "faxlist " . Faxlist::getParams() . "`");
+			return;
 		}
 		else
 		{

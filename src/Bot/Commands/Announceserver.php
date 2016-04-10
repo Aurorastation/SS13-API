@@ -20,6 +20,7 @@ class Announceserver
 		if (sizeof($params) < 1)
 		{
 			$message->reply("Not enough parametres passed! The proper syntax is: `" . $bot->config->getValue('BOT_PREFIX') . "announceserver " . Announceserver::getParams() . "`");
+			return;
 		}
 		else
 		{

@@ -20,6 +20,7 @@ class Faxget
 		if (sizeof($params) < 2 || !(strtolower($params[0]) == "sent" || strtolower($params[0]) == "received") || !is_numeric($params[1]))
 		{
 			$message->reply("Not enough parametres passed! The proper syntax is: `" . $bot->config->getValue('BOT_PREFIX') . "faxget " . Faxget::getParams() . "`");
+			return;
 		}
 		else
 		{

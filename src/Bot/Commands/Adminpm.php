@@ -20,6 +20,7 @@ class Adminpm
 		if (sizeof($params) < 2)
 		{
 			$message->reply("Not enough parametres passed! The proper syntax is: `" . $bot->config->getValue('BOT_PREFIX') . "adminpm " . Adminpm::getParams() . "`");
+			return;
 		}
 		else
 		{

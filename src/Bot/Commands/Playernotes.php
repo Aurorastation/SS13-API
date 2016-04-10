@@ -20,6 +20,7 @@ class Playernotes
 		if (sizeof($params) < 1)
 		{
 			$message->reply("Not enough parametres passed! The proper syntax is: `" . $bot->config->getValue('prefix') . "playernotes " . Playernotes::getParams() . "`");
+			return;
 		}
 		else
 		{
