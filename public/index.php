@@ -4,7 +4,7 @@ require '../vendor/autoload.php';
 
 use Slim\Slim;
 use Dotenv\Dotenv;
-use Borealis\API\ServerQuery;
+use BorealisAPI\ServerQuery;
 
 $dotenv = new Dotenv("../");
 $dotenv->load();
@@ -25,12 +25,12 @@ function verifyRequest()
 
 	if (!isset($key))
 	{
-		$app->render(403, ["error_msg" => "No key."]);
+		$app->render(403);
 	}
 
 	if (strcmp(md5(getenv('AUTH_KEY')), $key) !== 0)
 	{
-		$app->render(403, ["error_msg" => "Bad key."]);
+		$app->render(403);
 	}
 }
 
