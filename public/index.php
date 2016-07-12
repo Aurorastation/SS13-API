@@ -460,7 +460,7 @@ $app->get('/nudge/receive', 'verifyRequest', function () use ($app) {
 
 	$dbh = setupDbh();
 
-	$stmt = $dbh->prepare("SELECT key, channel, content FROM ss13_bot_cache WHERE id = :id");
+	$stmt = $dbh->prepare("SELECT msg_key, channel, content FROM ss13_bot_cache WHERE id = :id;");
 	$stmt->execute([":id" => $message_id]);
 
 	$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -468,7 +468,7 @@ $app->get('/nudge/receive', 'verifyRequest', function () use ($app) {
 	$response = [];
 	foreach ($rows as $row)
 	{
-		$response['nudge'][$row['key']] = [
+		$response['nudge'][$row['msg_key']] = [
 			"channel" => $row['channel'],
 			"content" => $row['content']
 		];
