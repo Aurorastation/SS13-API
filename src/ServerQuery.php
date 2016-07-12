@@ -1,6 +1,6 @@
 <?php
 
-namespace Borealis\API;
+namespace BorealisAPI;
 
 class ServerQuery
 {
