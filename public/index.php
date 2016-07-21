@@ -432,11 +432,15 @@ $app->get('/nudge/send', 'verifyRequest', function () use ($app) {
 	$socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
 
 	$bot_address = getenv("BOT_HOST");
-	$bot_port = getenv("BOT_PORT");
-	socket_connect($socket, $bot_address, $bot_port);
+	$bot_port = intval(getenv("BOT_PORT"));
 
-	$message = "nudge=" . $message_id;
-	$message .= "?auth_key=" . md5(getenv('AUTH_KEY'));
+	if (!socket_connect($socket, $bot_address, $bot_port))
+	{
+		$app->render(500, ["error_msg" => "Socket timed out.", "address" => $bot_address, "port" => $bot_port]);
+	}
+
+	$message = "message_id=" . $message_id;
+	$message .= "&auth_key=" . md5(getenv('AUTH_KEY'));
 	socket_write($socket, $message, strlen($message));
 
 	socket_close($socket);
@@ -460,7 +464,7 @@ $app->get('/nudge/receive', 'verifyRequest', function () use ($app) {
 
 	$dbh = setupDbh();
 
-	$stmt = $dbh->prepare("SELECT key, channel, content FROM ss13_bot_cache WHERE id = :id");
+	$stmt = $dbh->prepare("SELECT msg_key, channel, content FROM ss13_bot_cache WHERE id = :id");
 	$stmt->execute([":id" => $message_id]);
 
 	$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -468,7 +472,7 @@ $app->get('/nudge/receive', 'verifyRequest', function () use ($app) {
 	$response = [];
 	foreach ($rows as $row)
 	{
-		$response['nudge'][$row['key']] = [
+		$response['nudge'][$row['msg_key']] = [
 			"channel" => $row['channel'],
 			"content" => $row['content']
 		];
